@@ -7,10 +7,18 @@ import Delivery from './Components/Delivery/Delivery';
 import DineOut from './Components/DineOut/DineOut';
 import Restaurant from './Components/Restaurant/Restaurant';
 import Me from './Components/Me/Me';
-
+import { db } from './Firebase/firebase';
+import { collection,getDocs } from 'firebase/firestore/lite';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  // for test firebase
+  // async function getCities() {
+  //   const citiesCol = collection(db, 'Cities');
+  //   const citySnapshot = await getDocs(citiesCol);
+  //   const cityList = citySnapshot.docs.map(doc => doc.data());
+  //   console.log(cityList) ;
+  // }getCities()
   return (
     <NavigationContainer>
       <Tab.Navigator
