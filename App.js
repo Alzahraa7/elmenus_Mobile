@@ -3,6 +3,7 @@ import { Text, View} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NativeBaseProvider} from "native-base";
 import Delivery from './Components/Delivery/Delivery';
 import DineOut from './Components/DineOut/DineOut';
 import Restaurant from './Components/Restaurant/Restaurant';
@@ -20,6 +21,7 @@ export default function App() {
   //   console.log(cityList) ;
   // }getCities()
   return (
+    <NativeBaseProvider>
     <NavigationContainer>
       <Tab.Navigator
        screenOptions={({ route }) => ({
@@ -52,5 +54,6 @@ export default function App() {
         <Tab.Screen name="Me" component={Me} />
       </Tab.Navigator>
     </NavigationContainer>
+    </NativeBaseProvider>
   );
 }
