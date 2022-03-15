@@ -2,6 +2,7 @@ import { Box, Button, Slider, Image,Text, Input } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import Search from "./Search";
 import IconsList from "./iconsList";
+import BannerList from "./bannerList";
 const Delivery = () =>{
     return(
         <>
@@ -17,6 +18,7 @@ const Delivery = () =>{
             </Text>
             </Box>
             <IconsList />
+            <BannerList />
         </Box>
         </>
     );

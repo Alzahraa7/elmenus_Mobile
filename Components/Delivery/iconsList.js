@@ -24,6 +24,7 @@ const IconsList = () =>{
         <>
         <Box marginTop='6'>
         <FlatList
+        showsHorizontalScrollIndicator={false}
         data={iconsObj} 
         horizontal
         renderItem={({item})=>
