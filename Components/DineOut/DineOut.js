@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, StyleSheet, ImageBackground } from "react-native";
 import { HStack, Text, Image, ScrollView, CheckIcon, VStack, FlatList, Box, Input, CircleIcon, SearchIcon } from 'native-base'
 import { useState } from "react/cjs/react.production.min";
 import { Ionicons } from "@expo/vector-icons";
@@ -78,6 +78,8 @@ const DineOut = () => {
         },
 
     ]
+
+    const image = { uri: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Normal/b6b14b83-2225-11e8-924e-0242ac110011.jpg" };
 
     return (
         <>
@@ -204,3 +206,31 @@ const DineOut = () => {
 }
 
 export default DineOut;
+
+const style = StyleSheet.create({
+    moodCard: {
+        backgroundColor: "red",
+        height: 50,
+        width: 50,
+
+    },
+    container: {
+        width: "200px"
+    },
+    image: {
+        width: "200px",
+        height: "200px",
+        paddingTop: 130,
+        paddingLeft: 5
+        // justifyContent: "center"
+    },
+    text: {
+        color: "white",
+        fontSize: 20,
+        lineHeight: 84,
+      
+        // fontWeight: "bold",
+        // textAlign: "center",
+        // backgroundColor: "#000000c0"
+    }
+})
