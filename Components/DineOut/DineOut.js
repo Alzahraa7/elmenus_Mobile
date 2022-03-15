@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { HStack, Text, Image, ScrollView, CheckIcon, VStack, FlatList, Box, CircleIcon } from 'native-base'
+import { HStack, Text, Image, ScrollView, CheckIcon, VStack, FlatList, Box, Input, CircleIcon, SearchIcon } from 'native-base'
 import { useState } from "react/cjs/react.production.min";
 import { Ionicons } from "@expo/vector-icons";
 import Star from "react-native-star-view/lib/Star"
@@ -82,6 +82,18 @@ const DineOut = () => {
     return (
         <>
             <ScrollView style={{ backgroundColor: "white" }}>
+
+                <View style={{ backgroundColor: "#FCFDFE" }}>
+                    <View style={{ marginLeft: "35px", marginTop: "5px" }}>
+                        <Input variant="outline" placeholder="Find a Restaurant" width={350} />
+                        <HStack>
+                            <Text style={{ marginLeft: "100px", marginRight: "5px" }}>Dine out in</Text>
+                            <Text style={{ marginLeft: "5px" }} color="#e32207">Maadi</Text>
+                        </HStack>
+                    </View>
+                </View>
+
+
                 <Box>
                     <HStack justifyContent="space-between" style={{ margin: "15px" }}>
                         <Text fontSize="lg"> Discover by moods </Text>
@@ -132,12 +144,12 @@ const DineOut = () => {
                         renderItem={({ item }) => {
                             return (
                                 <View style={{ marginRight: "7px" }}>
-                                <Image source={{
-                                    uri: `${item.Image}`
-                                }} alt="Alternate Text" size="100px" borderRadius={10} />
+                                    <Image source={{
+                                        uri: `${item.Image}`
+                                    }} alt="Alternate Text" size="100px" borderRadius={10} />
 
-                                <Text style={{  textAlign:"center", marginTop:  "5px"}}>{item.Name}</Text>
-                            </View>
+                                    <Text style={{ textAlign: "center", marginTop: "5px" }}>{item.Name}</Text>
+                                </View>
                             )
                         }}
                     />
@@ -178,7 +190,7 @@ const DineOut = () => {
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => {
                             return (
-                                <NewResCard res={item}/>
+                                <NewResCard res={item} />
                             )
                         }}
                     />
