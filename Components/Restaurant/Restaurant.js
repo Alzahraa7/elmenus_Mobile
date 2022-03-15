@@ -57,9 +57,7 @@ const Restaurant = (props) => {
         
       /> */}
       <Card propsCopy={propsCopy}/>
-      
-        
-         <Button onPress={() => props.navigation.navigate({name:'ResDetails'})}> </Button>
+
         </View>
 
       </NativeBaseProvider>
