@@ -14,8 +14,8 @@ import {
   Spacer,
   Divider,
 } from "native-base";
-const Card = () => {
-
+const Card = ({item,propsCopy}) => {
+  
   return (
     <>
       <NativeBaseProvider>
@@ -41,11 +41,11 @@ const Card = () => {
                 backgroundColor: "gray.50",
               }}
             >
-              <Box>
+              <Box w="100%">
                 <AspectRatio w="100%" ratio={16 / 9}>
                   <Image
                     source={{
-                      uri: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/5a501b2d-faf1-4b61-9ff3-846ba311f6c6.jpg",
+                      uri: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/5a501b2d-faf1-4b61-9ff3-846ba311f6c6.jpg"
                     }}
                     alt="image"
                   />
@@ -59,9 +59,9 @@ const Card = () => {
                   py="1.5"
                   style={styles.opacity}
                 >
-                  <Button style={{ color: "white", fontSize: 16 }} onPress={()=>{console.log("ladmlksd")}}>Crispy Chicken</Button>
-                  <View style={{ backgroundColor: "rgba(234, 234, 234, 0.4)", borderRadius: 100 }}  ><ChevronRightIcon size="8" color={"white"} /></View>
-
+                 <Text style={{color:"white",fontSize:16}}>Crispy Chicken</Text> 
+                 <View style={{backgroundColor: "rgba(234, 234, 234, 0.4)",borderRadius:100}}  ><Button onPress={() => propsCopy.navigation.navigate({name:'ResDetails'})}><ChevronRightIcon size="8" color={"white"}  /></Button></View>
+                  
                 </Box>
               </Box>
               <Stack space={3}>
@@ -86,14 +86,14 @@ const Card = () => {
                   <View style={{ paddingLeft: 8 }}>
                     <View style={{ flex: 1, flexDirection: "row" }}>
                       <Heading size="md" ml="-1" fontWeight={400}>
-                        shshsh <Spacer />
-                        <Star score={4} style={styles.starStyle} />
+                       Bazooka <Spacer />
+                        <Star score={3.4} style={styles.starStyle} />
                       </Heading>
                       <Text
                         fontSize="xs"
                         style={{ color: "grey", marginTop: 5, paddingLeft: 8 }}
                       >
-                        {4}
+                        {3.4}
                       </Text>
                     </View>
                     <View>
@@ -103,7 +103,7 @@ const Card = () => {
                           color: "grey",
                         }}
                       >
-                        sdmmasd
+                       Sandwiches,FriendChicken
                       </Text>
                     </View>
                   </View>
@@ -158,6 +158,6 @@ const styles = StyleSheet.create({
   starStyle: {
     width: 80,
     height: 15,
-    marginLeft: 50,
+    marginLeft: 10,
   },
 });
