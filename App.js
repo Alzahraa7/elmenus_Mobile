@@ -3,15 +3,25 @@ import { Text, View} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NativeBaseProvider} from "native-base";
 import Delivery from './Components/Delivery/Delivery';
 import DineOut from './Components/DineOut/DineOut';
 import Restaurant from './Components/Restaurant/Restaurant';
 import Me from './Components/Me/Me';
-
+import { db } from './Firebase/firebase';
+import { collection,getDocs } from 'firebase/firestore/lite';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  // for test firebase
+  // async function getCities() {
+  //   const citiesCol = collection(db, 'Cities');
+  //   const citySnapshot = await getDocs(citiesCol);
+  //   const cityList = citySnapshot.docs.map(doc => doc.data());
+  //   console.log(cityList) ;
+  // }getCities()
   return (
+    <NativeBaseProvider>
     <NavigationContainer>
       <Tab.Navigator
        screenOptions={({ route }) => ({
@@ -44,5 +54,6 @@ export default function App() {
         <Tab.Screen name="Me" component={Me} />
       </Tab.Navigator>
     </NavigationContainer>
+    </NativeBaseProvider>
   );
 }
