@@ -1,7 +1,7 @@
-import { Text, View, StyleSheet,FlatList } from "react-native";
+import { Text, View, StyleSheet, FlatList } from "react-native";
 import Star from "react-native-star-view/lib/Star";
 import { Ionicons } from "@expo/vector-icons";
-import { CircleIcon,ChevronRightIcon } from "native-base";
+import { CircleIcon, ChevronRightIcon } from "native-base";
 import {
   Button,
   Box,
@@ -14,13 +14,13 @@ import {
   Spacer,
   Divider,
 } from "native-base";
-const Card = ({item}) => {
-  
+const Card = () => {
+
   return (
     <>
       <NativeBaseProvider>
         <View
-          style={{ flex: 1,marginTop:4 }}
+          style={{ flex: 1, marginTop: 4 }}
         >
           <Box alignItems="center" style={styles.card}>
             <Box
@@ -45,13 +45,13 @@ const Card = ({item}) => {
                 <AspectRatio w="100%" ratio={16 / 9}>
                   <Image
                     source={{
-                      uri: item.ImageURL,
+                      uri: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/5a501b2d-faf1-4b61-9ff3-846ba311f6c6.jpg",
                     }}
                     alt="image"
                   />
                 </AspectRatio>
-                <Box 
-                  
+                <Box
+
                   position="absolute"
                   bottom="4"
                   left="2"
@@ -59,9 +59,9 @@ const Card = ({item}) => {
                   py="1.5"
                   style={styles.opacity}
                 >
-                 <Text style={{color:"white",fontSize:16}}>Crispy Chicken</Text> 
-                 <View style={{backgroundColor: "rgba(234, 234, 234, 0.4)",borderRadius:100}}  ><ChevronRightIcon size="8" color={"white"} /></View>
-                  
+                  <Button style={{ color: "white", fontSize: 16 }} onPress={()=>{console.log("ladmlksd")}}>Crispy Chicken</Button>
+                  <View style={{ backgroundColor: "rgba(234, 234, 234, 0.4)", borderRadius: 100 }}  ><ChevronRightIcon size="8" color={"white"} /></View>
+
                 </Box>
               </Box>
               <Stack space={3}>
@@ -77,7 +77,7 @@ const Card = ({item}) => {
                       resizeMode={"contain"}
                       borderRadius={100}
                       source={{
-                        uri: item.ImageLogo,
+                        uri: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/5a501b2d-faf1-4b61-9ff3-846ba311f6c6.jpg",
                       }}
                       alt="Logo"
                     />
@@ -86,14 +86,14 @@ const Card = ({item}) => {
                   <View style={{ paddingLeft: 8 }}>
                     <View style={{ flex: 1, flexDirection: "row" }}>
                       <Heading size="md" ml="-1" fontWeight={400}>
-                        {item.ResName} <Spacer />
-                        <Star score={Number(item.Rate)} style={styles.starStyle} />
+                        shshsh <Spacer />
+                        <Star score={4} style={styles.starStyle} />
                       </Heading>
                       <Text
                         fontSize="xs"
                         style={{ color: "grey", marginTop: 5, paddingLeft: 8 }}
                       >
-                        {Number(item.Rate)}
+                        {4}
                       </Text>
                     </View>
                     <View>
@@ -103,7 +103,7 @@ const Card = ({item}) => {
                           color: "grey",
                         }}
                       >
-                        {item.Type+" , "}
+                        sdmmasd
                       </Text>
                     </View>
                   </View>
@@ -123,9 +123,9 @@ const Card = ({item}) => {
                   </View>
                   <View>
                     <Text fontSize={10} style={{ color: "#3bc93a" }}>
-                      
-                      <CircleIcon size={4} color="#3bc93a"  style={{paddingRight:6}} />
-                       ORDER ONLINE
+
+                      <CircleIcon size={4} color="#3bc93a" style={{ paddingRight: 6 }} />
+                      ORDER ONLINE
                     </Text>
                   </View>
                 </Stack>
@@ -134,7 +134,7 @@ const Card = ({item}) => {
           </Box>
         </View>
 
-        
+
       </NativeBaseProvider>
     </>
   );
@@ -144,16 +144,16 @@ export default Card;
 
 const styles = StyleSheet.create({
   card: {
-   
+
   },
   opacity: {
-    width:180,
+    width: 180,
     backgroundColor: "rgba(234, 234, 234, 0.7)",
     borderTopRightRadius: 30,
     borderBottomRightRadius: 30,
-    flex: 1, 
+    flex: 1,
     flexDirection: "row",
-    justifyContent:"space-between"
+    justifyContent: "space-between"
   },
   starStyle: {
     width: 80,

@@ -26,7 +26,7 @@ const Restaurant = () => {
         <View
           style={{ flex: 1}}
         >
-            <FlatList
+            {/* <FlatList
                data={Res}
                renderItem={({ item }) => <Card item={item} />}
                ItemSeparatorComponent={() => (
@@ -37,7 +37,9 @@ const Restaurant = () => {
             }}
           ></Box>
         )}
-      />
+      /> */}
+
+      <Card/>
           
         </View>
 
