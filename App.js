@@ -10,6 +10,8 @@ import Restaurant from './Components/Restaurant/Restaurant';
 import Me from './Components/Me/Me';
 import { db } from './Firebase/firebase';
 import { collection,getDocs } from 'firebase/firestore/lite';
+import { Res } from './Components/Res/Res';
+import { ResStackScreen } from './Components/RestStack/RestStack';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -43,16 +45,18 @@ export default function App() {
           }
 
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return  <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#e32207',
         tabBarInactiveTintColor: 'gray',
       })}>
         <Tab.Screen name="Delivery" component={Delivery} />
-        <Tab.Screen name="Restaurant" component={Restaurant} />
+        <Tab.Screen name="Restaurant" component={ResStackScreen} />
         <Tab.Screen name="DineOut" component={DineOut} />
         <Tab.Screen name="Me" component={Me} />
+       
       </Tab.Navigator>
+
     </NavigationContainer>
     </NativeBaseProvider>
   );
