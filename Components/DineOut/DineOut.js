@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Star from "react-native-star-view/lib/Star"
 import MoodCard from "./moodCard";
 import CityCard from "./cityResCard";
+import NewResCard from "./newResCard";
 
 const DineOut = () => {
 
@@ -177,22 +178,10 @@ const DineOut = () => {
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => {
                             return (
-                                <View style={{ marginRight: "7px" }}>
-                                    <Image source={{
-                                        uri: `${item.Logo}`
-                                    }} alt="Alternate Text" size="70px" borderRadius={10} />
-
-                                    <Text style={{  textAlign:"center" }}>Bazooka</Text>
-                                </View>
+                                <NewResCard res={item}/>
                             )
                         }}
                     />
-
-                    {/* <Image source={{
-                    uri: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/d772c046-4a28-4c85-bfe6-0fd4627c37b4.jpg"
-                }} alt="Alternate Text" size="70px" borderRadius={10} />
-
-                <Text>Bazooka</Text> */}
                 </View>
 
 
