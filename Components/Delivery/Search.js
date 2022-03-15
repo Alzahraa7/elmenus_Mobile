@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 const Search = () =>{
     return(
         <>
-        <Box backgroundColor='white' padding='5px' shadow='4'>
+        <Box backgroundColor='white' padding='5px' shadow='6'>
             <Box flexDirection='row'>
             <Input width='90%'
             placeholder="Find a Resturant or Dish"

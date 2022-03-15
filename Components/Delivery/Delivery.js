@@ -1,13 +1,15 @@
-import { Box, Button, Slider, Image,Text, Input } from "native-base";
+import { Box, Button, Slider, Image,Text, Input, ScrollView } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import Search from "./Search";
 import IconsList from "./iconsList";
 import BannerList from "./bannerList";
+import TastyOffers from "./tastyOffers";
 const Delivery = () =>{
     return(
         <>
-        <Box bgColor='white'>
             <Search />
+        <ScrollView showsVerticalScrollIndicator={false}>
+        <Box bgColor='white'>
             <Box margin='5' flexDirection='row'>
             <Image width='50px' height='50px' source={{uri:'https://previews.123rf.com/images/arcady31/arcady311606/arcady31160600002/59113161-offre-sp%C3%A9ciale-ic%C3%B4ne-%C3%A9toile-rouge.jpg'}} > 
             </Image>
@@ -19,7 +21,9 @@ const Delivery = () =>{
             </Box>
             <IconsList />
             <BannerList />
+            <TastyOffers />
         </Box>
+        </ScrollView>
         </>
     );
 }
