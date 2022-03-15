@@ -59,8 +59,8 @@ const Card = ({item,propsCopy}) => {
                   py="1.5"
                   style={styles.opacity}
                 >
-                 <Text style={{color:"white",fontSize:16}}>Crispy Chicken</Text> 
-                 <View style={{backgroundColor: "rgba(234, 234, 234, 0.4)",borderRadius:100}}  ><Button onPress={() => propsCopy.navigation.navigate({name:'ResDetails'})}><ChevronRightIcon size="8" color={"white"}  /></Button></View>
+                 <Text style={{color:"white",fontSize:16}} onPress={() => propsCopy.navigation.navigate({name:'ResDetails'})} >Crispy Chicken</Text> 
+                 <View style={{backgroundColor: "rgba(234, 234, 234, 0.4)",borderRadius:100}}  ><ChevronRightIcon size="8" color={"white"}  /></View>
                   
                 </Box>
               </Box>

@@ -10,7 +10,7 @@ import Restaurant from './Components/Restaurant/Restaurant';
 import Me from './Components/Me/Me';
 import { db } from './Firebase/firebase';
 import { collection,getDocs } from 'firebase/firestore/lite';
-import { Res } from './Components/Res/Res';
+import { Res } from './Components/ResDetails/Res';
 import { ResStackScreen } from './Components/RestStack/RestStack';
 const Tab = createBottomTabNavigator();
 
@@ -51,7 +51,7 @@ export default function App() {
         tabBarInactiveTintColor: 'gray',
       })}>
         <Tab.Screen name="Delivery" component={Delivery} />
-        <Tab.Screen name="Restaurant" component={ResStackScreen} />
+        <Tab.Screen name="Restaurant" component={ResStackScreen} options={{header: () => null}}  />
         <Tab.Screen name="DineOut" component={DineOut} />
         <Tab.Screen name="Me" component={Me} />
        
