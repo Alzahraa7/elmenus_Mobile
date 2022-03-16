@@ -23,9 +23,9 @@ const Card = ({item,propsCopy}) => {
         >
           <Box alignItems="center" style={styles.card}>
             <Box
-            
+              
               rounded="lg"
-            
+              overflow="hidden"
               borderColor="coolGray.200"
               borderWidth="1"
               _dark={{
@@ -42,9 +42,8 @@ const Card = ({item,propsCopy}) => {
               style={{"width":"80%"}}
             >
               <Box w="100%">
-                <AspectRatio w="100%" >
+                <AspectRatio w="100%" ratio={16 / 9}>
                   <Image
-                  
                     source={{
                       uri: item.Image
                     }}
