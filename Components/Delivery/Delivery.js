@@ -4,6 +4,7 @@ import Search from "./Search";
 import IconsList from "./iconsList";
 import BannerList from "./bannerList";
 import TastyOffers from "./tastyOffers";
+import TopDishes from "./TopDishes";
 const Delivery = () =>{
     return(
         <>
@@ -22,6 +23,7 @@ const Delivery = () =>{
             <IconsList />
             <BannerList />
             <TastyOffers />
+            <TopDishes />
         </Box>
         </ScrollView>
         </>
