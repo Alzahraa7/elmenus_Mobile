@@ -1,13 +1,17 @@
 import { View, StyleSheet, ImageBackground } from "react-native";
 import { HStack, Text, Image, ScrollView, CheckIcon, VStack, FlatList, Box, Input, CircleIcon, SearchIcon } from 'native-base'
-import { useState } from "react/cjs/react.production.min";
+import { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Star from "react-native-star-view/lib/Star"
 import MoodCard from "./moodCard";
 import CityCard from "./cityResCard";
 import NewResCard from "./newResCard";
 
+import { collection,getDocs,getDoc,doc } from "firebase/firestore/lite";
+import { db } from "../../Firebase/firebase";
+
 const DineOut = () => {
+  
 
     const dineoutbyMood = [
         {
@@ -78,8 +82,19 @@ const DineOut = () => {
         },
 
     ]
-
-    const image = { uri: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Normal/b6b14b83-2225-11e8-924e-0242ac110011.jpg" };
+    const [Res,setRes] =useState([]);
+    let [len,setLen] = useState(0)
+    useEffect(()=>{
+      async function getResturants() {
+          const RestaurantRef = collection(db,'Restaurants')
+          const ResSnapshot = await getDocs(RestaurantRef);
+          const ResList = ResSnapshot.docs.map(doc => doc.data());
+          setLen(ResSnapshot.docs.length)
+          setRes(ResList)
+          return ResList
+    }
+    getResturants()
+},[])
 
     return (
         <>
