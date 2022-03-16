@@ -1,15 +1,17 @@
-import * as React from "react";
-import { Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NativeBaseProvider } from "native-base";
-import Delivery from "./Components/Delivery/Delivery";
-import DineOut from "./Components/DineOut/DineOut";
-import Restaurant from "./Components/Restaurant/Restaurant";
-import Me from "./Components/Me/Me";
-import { db } from "./Firebase/firebase";
-import { collection, getDocs } from "firebase/firestore/lite";
+import * as React from 'react';
+import { Text, View} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NativeBaseProvider} from "native-base";
+import Delivery from './Components/Delivery/Delivery';
+import DineOut from './Components/DineOut/DineOut';
+import Restaurant from './Components/Restaurant/Restaurant';
+import Me from './Components/Me/Me';
+import { db } from './Firebase/firebase';
+import { collection,getDocs } from 'firebase/firestore/lite';
+import { Res } from './Components/ResDetails/Res';
+import { ResStackScreen } from './Components/RestStack/RestStack'
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -38,36 +40,19 @@ export default function App() {
                 iconName = focused ? "person" : "person-outline";
               }
 
-              // You can return any component that you like here!
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: "#e32207",
-            tabBarInactiveTintColor: "gray",
-          })}
-        >
-          <Tab.Screen
-            options={{
-              title:'Deliver To',
-              headerTitleContainerStyle:{
-                alignItems:'flex-start'
-              },
-              headerStyle: {
-                backgroundColor: "#FAF9F9",
-              },
-              headerTintColor: "#b1b1b1",
-              headerTitleStyle: {
-                fontWeight: '400',
-                fontSize:'17px'
-              },
-            }}
-            name="Delivery"
-            component={Delivery}
-          />
-          <Tab.Screen name="Restaurant" component={Restaurant} />
-          <Tab.Screen name="DineOut" component={DineOut} />
-          <Tab.Screen name="Me" component={Me} />
-        </Tab.Navigator>
-      </NavigationContainer>
+          // You can return any component that you like here!
+          return  <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: '#e32207',
+        tabBarInactiveTintColor: 'gray',
+      })}>
+        <Tab.Screen name="Delivery" component={Delivery} />
+        <Tab.Screen name="Restaurant" component={ResStackScreen} options={{header: () => null}}  />
+        <Tab.Screen name="DineOut" component={DineOut} />
+        <Tab.Screen name="Me" component={Me} />
+       
+      </Tab.Navigator>
+    </NavigationContainer>
     </NativeBaseProvider>
  
   );
