@@ -77,6 +77,9 @@ export const MealDetails = () => {
     },
   ];
 
+  // shrouk
+  const [added, setAdd] = useState(false)
+
   //   const onOpen = (prop) => {
   //     setOpenIndex(prop?.title === "First Chapter" ? 0 : 1)
   //   }
@@ -223,7 +226,16 @@ export const MealDetails = () => {
             <TouchableOpacity  style={styles.touch}>
           <Text style={{fontWeight:600,fontSize:30,marginBottom:5,color:"red"}}>+</Text>
         </TouchableOpacity>
-            <Button  colorScheme="red" leftIcon={<Ionicons  name="basket" size="lg" color="white" />}>Add to basket</Button>
+            <Button  colorScheme="red" leftIcon={<Ionicons  name="basket" size="lg" color="white" />} onPress={()=>{
+              localStorage.setItem('Added',true)
+              window.location.reload()
+            }}>Add to basket</Button>
+        </View>
+
+        <View style={{ position: "sticky", bottom: 0 }}>
+           {
+             localStorage.getItem('Added') && <Button colorScheme="red" width="100%" rightIcon={<Ionicons  name="basket" size="lg" color="white" />} > Go To Basket </Button>
+           } 
         </View>
       </ScrollView>
     </>
