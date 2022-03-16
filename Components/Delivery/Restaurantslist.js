@@ -14,8 +14,12 @@ import {
 import { Icon } from 'react-native-eva-icons';
 import { Ionicons } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
+import { useState,useEffect } from "react";
+import { collection,getDocs,getDoc,doc } from "firebase/firestore/lite";
+import { db } from "../../Firebase/firebase";
 const RestaurantList = () => {
   const { width: windowWidth } = Dimensions.get("window");
+/*
   const Res = [
     {
       ResName: "Bazooka",
@@ -41,14 +45,28 @@ const RestaurantList = () => {
       ProName: "El Saytara Box",
       Price: "331.00",
     },
-  ];
+  ];*/
+  const [Res,setRes] =useState([]);
+  let [len,setLen] = useState(0)
+  useEffect(()=>{
+    async function getResturants() {
+        const RestaurantRef = collection(db,'Restaurants')
+        const ResSnapshot = await getDocs(RestaurantRef);
+        const ResList = ResSnapshot.docs.map(doc => doc.data());
+        setLen(ResSnapshot.docs.length)
+        setRes(ResList)
+        return ResList
+  }
+  getResturants()
+
+},[])
   return (
     <>
       <Box margin="3">
         <Box>
           <Text fontWeight="extrabold" fontSize="15px">
             {" "}
-            Restaurants (75)
+            Restaurants ({len})
           </Text>
         </Box>
         <Box margin="3">
@@ -66,13 +84,13 @@ const RestaurantList = () => {
                     height="200px"
                     borderTopRightRadius="15px"
                     borderTopLeftRadius="15px"
-                    source={{ uri: item.ImageURL }}
+                    source={{ uri: item.Image }}
                   />
-                  <Box style={{backgroundColor: "rgba(234, 234, 234, 0.4)",borderRadius:100}}  ><ChevronRightIcon size="8" color={"white"} /></Box>
-                  <Box bgColor='white' opacity='0.5' position='absolute' bottom='5' borderBottomRightRadius='20px' borderTopRightRadius='20px' padding='2' margin='3'>
-                      <Text fontSize='17px' fontWeight='extrabold' color='black'> {item.ProName} </Text>
-                      <Text fontSize='15px' fontWeight='extrabold' color='black'> {item.Price} </Text>
-                  </Box>
+                  {/* <Box style={{backgroundColor: "rgba(234, 234, 234, 0.4)",borderRadius:100}}  ><ChevronRightIcon size="8" color={"white"} /></Box> */}
+                  {/* <Box bgColor='white' opacity='0.5' position='absolute' bottom='5' borderBottomRightRadius='20px' borderTopRightRadius='20px' padding='2' margin='3'>
+                      <Text fontSize='17px' fontWeight='extrabold' color='black'>  </Text>
+                      <Text fontSize='15px' fontWeight='extrabold' color='black'>  </Text>
+                  </Box> */}
                   </Box>
                   <Box
                     margin="2"
@@ -80,7 +98,7 @@ const RestaurantList = () => {
                     style={{ justifyContent: "space-between" }}
                   >
                     <Box flexDirection="row">
-                      <Avatar source={{ uri: item.ImageLogo }} />
+                      <Avatar source={{ uri: item.Logo }} />
                       <Box flexDirection="column">
                         <Text
                           fontWeight="extrabold"
@@ -119,7 +137,7 @@ const RestaurantList = () => {
                     margin='3'
                   >
                     <Icon name="percent" width={20}></Icon>
-                    <Text>{item.Offer}</Text>
+                    <Text> 30EGP on orders above 100EGP</Text>
                   </Box>
                   <Divider marginBottom='2' borderWidth='1' borderColor='gray.300' marginTop='2' />
                   <Box flexDirection='row' justifyContent='space-around' padding='2'> 
