@@ -138,7 +138,7 @@ const DineOut = () => {
                     <FlatList
                         horizontal
                         showsHorizontalScrollIndicator={false}
-                        data={discoverCity}
+                        data={Res}
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => {
                             return (
@@ -183,7 +183,7 @@ const DineOut = () => {
                     <FlatList
                         horizontal
                         showsHorizontalScrollIndicator={false}
-                        data={discoverCity}
+                        data={Res}
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => {
                             return (
@@ -203,7 +203,7 @@ const DineOut = () => {
                         style={{ marginLeft: "5px" }}
                         horizontal
                         showsHorizontalScrollIndicator={false}
-                        data={discoverCity}
+                        data={Res}
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => {
                             return (

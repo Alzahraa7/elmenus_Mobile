@@ -18,7 +18,7 @@ const CityCard = (props) => {
             uri: `${props.res.Logo}`
         }} alt="Alternate Text" size="50px" borderRadius={10} style={{ position: "absolute", top: "50%", left: "2%" }} />
 
-        <Text> {props.res.Name} </Text>
+        <Text> {props.res.ResName} </Text>
         <HStack>
             <Star score={props.res.Rate} style={{ width: "80", height: "15" }}/>
             <Text>{props.res.Rate} Rating</Text>
