@@ -11,7 +11,7 @@ import Me from './Components/Me/Me';
 import { db } from './Firebase/firebase';
 import { collection,getDocs } from 'firebase/firestore/lite';
 import { Res } from './Components/ResDetails/Res';
-import { ResStackScreen } from './Components/RestStack/RestStack';
+import { ResStackScreen } from './Components/RestStack/RestStack'
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -56,7 +56,6 @@ export default function App() {
         <Tab.Screen name="Me" component={Me} />
        
       </Tab.Navigator>
-
     </NavigationContainer>
     </NativeBaseProvider>
   );
