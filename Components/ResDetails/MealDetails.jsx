@@ -11,43 +11,29 @@ import {
   ScrollView,
   Input,
   Button,
-  HStack
+  HStack,
+  FlatList
 } from "native-base";
-import { TouchableOpacity,StyleSheet } from "react-native";
-import { useState } from "react";
+import { TouchableOpacity, StyleSheet } from "react-native";
+import { useState, useEffect } from "react";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { Ionicons } from "@expo/vector-icons";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-export const MealDetails = () => {
+import { collection, getDocs, getDoc, doc } from "firebase/firestore/lite";
+import { db } from "../../Firebase/firebase";
+
+export const MealDetails = (props) => {
+  console.log(props.route.params.MealID)
+  const MealID = props.route.params.MealID;
+  // shrouk
+
   const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
 
-  // const data = [
-  //     {
-  //       title: "First Chapter",
-  //       data: (
-  //         <Checkbox
-  //           onChange={radioClickHandler.bind(null, 'first')}
-  //           color="primary"
-  //           label="Primary Checkbox"
-  //         />
-  //       )
-  //    },
-  //    {
-  //     title: "Second Chapter",
-  //     data: (
-  //         <Checkbox
-  //           onChange={radioClickHandler.bind(null, 'second')}
-  //           color="primary"
-  //           label="Secondary Checkbox"
-  //         />
-  //       )
-  //     }
-  //   ]
   const [openIndex, setOpenIndex] = useState(-1);
 
   const radioClickHandler = (id, status) => {
@@ -77,22 +63,36 @@ export const MealDetails = () => {
     },
   ];
 
-  // shrouk
-  const [added, setAdd] = useState(false)
+  const Rest = doc(db, 'Restaurants', localStorage.getItem("ResID"), "Menus", MealID);
+  const [Res, setRes] = useState([])
 
-  //   const onOpen = (prop) => {
-  //     setOpenIndex(prop?.title === "First Chapter" ? 0 : 1)
-  //   }
-  //   const [selected, setSelected] = useState(opened);
+  useEffect(() => {
+    async function getResturants() {
+      const ResSnapshot = await getDoc(Rest);
+      const ResList = ResSnapshot.data()
+      setRes(ResList)
+      return ResList
+    }
 
-  //   useEffect(() => {
-  //     setSelected(opened)
-  //   }, [opened])
+    getResturants()
+
+  }, [])
+
+  const test = [
+    {
+      Name: "Regular",
+      Price: 50
+    },
+    {
+      Name: "Small",
+      Price: 100
+    }
+  ]
 
   return (
     <>
       <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
-      
+
         <Box
           w="100%"
           style={{ borderBottomColor: "grey", borderBottomWidth: 1 }}
@@ -100,21 +100,20 @@ export const MealDetails = () => {
           <AspectRatio w="100%" ratio={16 / 9}>
             <Image
               source={{
-                uri: "https://www.lentils.org/wp-content/uploads/2020/07/Sask-Pulse-Growers-Korean-Burger-7401.jpg",
+                uri: Res.Image,
               }}
               alt="image"
             />
           </AspectRatio>
           <HStack style={{ position: "absolute", top: "88%", left: "80%" }}>
-            
+
             <Button style={{ backgroundColor: "white", borderRadius: "50%", boxShadow: "4px 5px 7px -5px rgba(97,90,90,0.84)" }}><Ionicons color="#e32207" name="share" size={30} /></Button>
-      </HStack>
+          </HStack>
         </Box>
         <View style={{ margin: 16 }}>
-          <Heading>Elmenus Meal</Heading>
+          <Heading> {Res.Name} </Heading>
           <Text style={{ color: "grey" }} pt={2} pb={2}>
-            1 large O Ranch sandwich, 1 large Club house sandwitch, served with
-            2 fires, 2coleslaw and 2 soft drink cans
+            {Res.Description}
           </Text>
         </View>
 
@@ -136,25 +135,45 @@ export const MealDetails = () => {
                 name="myRadioGroup"
                 accessibilityLabel="Pick your favorite number"
               >
-               <View style={{"position":'relative'}}><Radio colorScheme="green" size="lg" value="Regular" my={5}>
+{/* 
+                <Text>dhdh</Text>
+                <FlatList
+                  data={test}
+                  keyExtractor={item => item.id}
+                  renderItem={({ item }) => {
+                    return (
+                      <>
+                        <HStack>
+                          <View style={{ "position": 'relative' }}><Radio colorScheme="green" size="lg" value="Regular" my={5}>
+                            {item.Name}
+                          </Radio>
+                          </View>
+                          <Text style={{ "color": "grey", "position": 'absolute', 'top': 25, 'right': 8 }}> {item.Price} EGP</Text>
+                        </HStack>
+                      </>
+                    )
+                  }}
+                /> */}
+
+                <View style={{ "position": 'relative' }}><Radio colorScheme="green" size="lg" value="Regular" my={5}>
                   Regular
                 </Radio>
-                </View> 
-                <Text style={{"color":"grey","position":'absolute','top':25,'right':8}}>0.00 EGP</Text>
-
+                </View>
+                <Text style={{ "color": "grey", "position": 'absolute', 'top': 25, 'right': 8 }}>0.00 EGP</Text> 
+              
                 <Divider />
-                <View style={{"position":'relative'}}><Radio colorScheme="green" size="lg" value="Medium" my={5}>
+                <View style={{ "position": 'relative' }}><Radio colorScheme="green" size="lg" value="Medium" my={5}>
                   Medium
                 </Radio>
                 </View>
-                <Text style={{"color":"grey","position":'absolute','top':90,'right':8}}>0.00 EGP</Text>
+                <Text style={{ "color": "grey", "position": 'absolute', 'top': 90, 'right': 8 }}>0.00 EGP</Text>
 
                 <Divider />
-                <View style={{"position":'relative'}}><Radio colorScheme="green" size="lg" value="Large" my={5}>
+                <View style={{ "position": 'relative' }}><Radio colorScheme="green" size="lg" value="Large" my={5}>
                   Large
-                    </Radio>
+                </Radio>
                 </View>
-                <Text style={{"color":"grey","position":'absolute','top':158,'right':8}}>0.00 EGP</Text>
+                <Text style={{ "color": "grey", "position": 'absolute', 'top': 158, 'right': 8 }}>0.00 EGP</Text>
 
                 <Divider />
               </Radio.Group>
@@ -177,32 +196,32 @@ export const MealDetails = () => {
                 name="myRadioGroup"
                 accessibilityLabel="Pick your favorite number"
               >
-                  
-                      <View style={{"position":'relative'}}><Checkbox
-                                value="spicy Souic"
-                                colorScheme="green"
-                                size="md"
-                                my={5}
-                                >
-                                spicy Souic
-                                </Checkbox>
-                   
-                     </View>
-                   <Text style={{"color":"grey","position":'absolute','top':25,'right':8}}>0.00 EGP</Text>
 
-                
+                <View style={{ "position": 'relative' }}><Checkbox
+                  value="spicy Souic"
+                  colorScheme="green"
+                  size="md"
+                  my={5}
+                >
+                  spicy Souic
+                </Checkbox>
+
+                </View>
+                <Text style={{ "color": "grey", "position": 'absolute', 'top': 25, 'right': 8 }}>0.00 EGP</Text>
+
+
                 <Divider />
-                <View style={{"position":'relative'}}><Checkbox
-                                value="spicy Souic"
-                                colorScheme="green"
-                                size="md"
-                                my={5}
-                                >
-                                spicy Souic
-                                </Checkbox>
-                   
-                     </View>
-                   <Text style={{"color":"grey","position":'absolute','top':90,'right':8}}>0.00 EGP</Text>
+                <View style={{ "position": 'relative' }}><Checkbox
+                  value="spicy Souic"
+                  colorScheme="green"
+                  size="md"
+                  my={5}
+                >
+                  spicy Souic
+                </Checkbox>
+
+                </View>
+                <Text style={{ "color": "grey", "position": 'absolute', 'top': 90, 'right': 8 }}>0.00 EGP</Text>
                 <Divider />
               </Radio.Group>
             </AccordionDetails>
@@ -217,40 +236,40 @@ export const MealDetails = () => {
             />
           </View>
         </View>
-        <View style={{flexDirection:"row", justifyContent:'space-around', backgroundColor: "#F5F5F5",borderTopLeftRadius:30,borderTopRightRadius:30,position:'sticky',bottom:0}} py={3} >
-          
-        <TouchableOpacity  style={styles.touch}>
-          <Text style={{fontWeight:600,fontSize:30,marginBottom:5,color:"red"}}>-</Text>
-        </TouchableOpacity>           
-         <Heading >1</Heading>
-            <TouchableOpacity  style={styles.touch}>
-          <Text style={{fontWeight:600,fontSize:30,marginBottom:5,color:"red"}}>+</Text>
-        </TouchableOpacity>
-            <Button  colorScheme="red" leftIcon={<Ionicons  name="basket" size="lg" color="white" />} onPress={()=>{
-              localStorage.setItem('Added',true)
-              window.location.reload()
-            }}>Add to basket</Button>
+        <View style={{ flexDirection: "row", justifyContent: 'space-around', backgroundColor: "#F5F5F5", borderTopLeftRadius: 30, borderTopRightRadius: 30, position: 'sticky', bottom: 0 }} py={3} >
+
+          <TouchableOpacity style={styles.touch}>
+            <Text style={{ fontWeight: 600, fontSize: 30, marginBottom: 5, color: "red" }}>-</Text>
+          </TouchableOpacity>
+          <Heading >1</Heading>
+          <TouchableOpacity style={styles.touch}>
+            <Text style={{ fontWeight: 600, fontSize: 30, marginBottom: 5, color: "red" }}>+</Text>
+          </TouchableOpacity>
+          <Button colorScheme="red" leftIcon={<Ionicons name="basket" size="lg" color="white" />} onPress={() => {
+            localStorage.setItem('Added', true)
+            window.location.reload()
+          }}>Add to basket</Button>
         </View>
 
         <View style={{ position: "sticky", bottom: 0 }}>
-           {
-             localStorage.getItem('Added') && <Button colorScheme="red" width="100%" rightIcon={<Ionicons  name="basket" size="lg" color="white" />} > Go To Basket </Button>
-           } 
+          {
+            localStorage.getItem('Added') && <Button colorScheme="red" width="100%" rightIcon={<Ionicons name="basket" size="lg" color="white" />} > Go To Basket </Button>
+          }
         </View>
       </ScrollView>
     </>
   );
 };
 const styles = StyleSheet.create({
-   
-    touch:{
-      width:30,
-      height:30,
-      justifyContent:"center",
-      alignItems:"center",
-      backgroundColor:"#E4E4E9",
-      borderRadius:20,
-      padding:10
-     
-    }
-   });
+
+  touch: {
+    width: 30,
+    height: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#E4E4E9",
+    borderRadius: 20,
+    padding: 10
+
+  }
+});

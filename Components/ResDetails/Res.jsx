@@ -18,6 +18,8 @@ export const ResDetails = (props) => {
     // console.log(props.route.params.ResID)
 
     const  ResID = props.route.params.ResID;
+    localStorage.setItem("ResID", ResID)
+
     const [Res,setRes] =useState([])
     const [Menu,setMenu] =useState([])
     const Rest = doc(db, 'Restaurants',ResID);
