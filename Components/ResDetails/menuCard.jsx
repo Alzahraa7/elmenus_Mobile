@@ -49,7 +49,7 @@ const Menu = [
     }
 ]
 
-const MenuCard = ({props}) => {
+const MenuCard = ({props,Menu}) => {
     return (
         <>
             <View>

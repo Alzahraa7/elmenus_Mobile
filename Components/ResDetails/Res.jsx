@@ -10,15 +10,42 @@ import ResDetailsCard from "./ResDetailsCard";
 import MenuCard from "./menuCard";
 import InfoCard from "./InfoCard";
 import ReviewCard from "./ReviewCard";
-
+import { useState,useEffect } from "react";
+import { collection,getDocs,getDoc,doc } from "firebase/firestore/lite";
+import { db } from "../../Firebase/firebase";
 
 export const ResDetails = (props) => {
-    const { ResID} = this.props.route.params;
-    console.log(ResID)
+    const  ResID = props.route.params.ResID;
+    const [Res,setRes] =useState([])
+    const [Menu,setMenu] =useState([])
+    const Rest = doc(db, 'Restaurant',ResID);
+    const Menus = collection(db, 'Restaurant',ResID)
+    useEffect(()=>{
+        async function getResturants() {
+            const ResSnapshot = await getDoc(Rest);
+            const ResList = ResSnapshot.data()
+            setRes(ResList)
+            return ResList
+      }
+      async function getMenu() {
+        const ResSnapshot = await getDocs(Menus);
+        const MenuList = ResSnapshot.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        });
+        setMenu(MenuList);
+        return MenuList;
+      }
 
+
+
+      getResturants()
+      getMenu()
+
+    },[])
+   
     const FirstRoute = () => (
         <>
-            <MenuCard props={props} />
+            <MenuCard props={props} Menu={Menu}/>
         </>
     );
 
@@ -56,7 +83,7 @@ export const ResDetails = (props) => {
             <ScrollView>
                 <View style={{ backgroundColor: "white", height: "100%" }}>
 
-                    <ResDetailsCard />
+                    <ResDetailsCard Res={Res}/>
 
                     <View style={{ color: "black" }}>
                         <TabView

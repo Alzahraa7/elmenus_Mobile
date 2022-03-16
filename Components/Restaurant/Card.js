@@ -15,7 +15,6 @@ import {
   Divider,
 } from "native-base";
 const Card = ({item,propsCopy}) => {
-  
   return (
     <>
       <NativeBaseProvider>
@@ -59,8 +58,7 @@ const Card = ({item,propsCopy}) => {
                   py="1.5"
                   style={styles.opacity}
                 >
-                 <Text style={{color:"white",fontSize:16}} onPress={() => propsCopy.navigation.navigate({name:'ResDetails'},{
-                  ResID: Res.id})} >{item.Type}</Text> 
+                 <Text style={{color:"white",fontSize:16}} onPress={() => propsCopy.navigation.navigate('ResDetails',{ResID:item.id})} >{item.Type}</Text> 
                  <View style={{backgroundColor: "rgba(234, 234, 234, 0.4)",borderRadius:100}}  ><ChevronRightIcon size="8" color={"white"}  /></View>
                   
                 </Box>
@@ -87,7 +85,9 @@ const Card = ({item,propsCopy}) => {
                   <View style={{ paddingLeft: 8 }}>
                     <View style={{ flex: 1, flexDirection: "row" }}>
                       <Heading size="md" ml="-1" fontWeight={400}>
-                       {item.ResName} <Spacer />
+
+                       {item.ResName} 
+                       <Spacer />
                         <Star score={Number(item.Rate)} style={styles.starStyle} />
                       </Heading>
                       <Text
