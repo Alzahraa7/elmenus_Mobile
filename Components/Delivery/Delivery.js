@@ -5,6 +5,7 @@ import IconsList from "./iconsList";
 import BannerList from "./bannerList";
 import TastyOffers from "./tastyOffers";
 import TopDishes from "./TopDishes";
+import RestaurantList from "./Restaurantslist";
 const Delivery = () =>{
     return(
         <>
@@ -24,6 +25,7 @@ const Delivery = () =>{
             <BannerList />
             <TastyOffers />
             <TopDishes />
+            <RestaurantList />
         </Box>
         </ScrollView>
         </>

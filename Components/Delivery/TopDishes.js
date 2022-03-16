@@ -42,7 +42,7 @@ const TopDishes = () =>{
                     See All
                 </Text>
             </Box>
-        <Box marginTop='4'>
+        <Box marginTop='2'>
             <FlatList style={{ flex: 1 }}
             data={topDishes} 
             horizontal
