@@ -48,6 +48,7 @@ const Card = ({item,propsCopy}) => {
                       uri: item.Image
                     }}
                     alt="image"
+                    style={{"width":"100%"}}
                   />
                 </AspectRatio>
                 <Box
