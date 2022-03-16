@@ -45,7 +45,7 @@ const Card = ({item,propsCopy}) => {
                 <AspectRatio w="100%" ratio={16 / 9}>
                   <Image
                     source={{
-                      uri: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/5a501b2d-faf1-4b61-9ff3-846ba311f6c6.jpg"
+                      uri: item.ImageURL
                     }}
                     alt="image"
                   />
@@ -59,7 +59,7 @@ const Card = ({item,propsCopy}) => {
                   py="1.5"
                   style={styles.opacity}
                 >
-                 <Text style={{color:"white",fontSize:16}} onPress={() => propsCopy.navigation.navigate({name:'CheckOut'})} >Crispy Chicken</Text> 
+                 <Text style={{color:"white",fontSize:16}} onPress={() => propsCopy.navigation.navigate({name:'CheckOut'})} >{item.Type}</Text> 
                  <View style={{backgroundColor: "rgba(234, 234, 234, 0.4)",borderRadius:100}}  ><ChevronRightIcon size="8" color={"white"}  /></View>
                   
                 </Box>
@@ -77,7 +77,7 @@ const Card = ({item,propsCopy}) => {
                       resizeMode={"contain"}
                       borderRadius={100}
                       source={{
-                        uri: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/5a501b2d-faf1-4b61-9ff3-846ba311f6c6.jpg",
+                        uri: item.ImageLogo,
                       }}
                       alt="Logo"
                     />
@@ -86,14 +86,14 @@ const Card = ({item,propsCopy}) => {
                   <View style={{ paddingLeft: 8 }}>
                     <View style={{ flex: 1, flexDirection: "row" }}>
                       <Heading size="md" ml="-1" fontWeight={400}>
-                       Bazooka <Spacer />
-                        <Star score={3.4} style={styles.starStyle} />
+                       {item.ResName} <Spacer />
+                        <Star score={Number(item.Rate)} style={styles.starStyle} />
                       </Heading>
                       <Text
                         fontSize="xs"
                         style={{ color: "grey", marginTop: 5, paddingLeft: 8 }}
                       >
-                        {3.4}
+                        {Number(item.Rate)}
                       </Text>
                     </View>
                     <View>
@@ -103,7 +103,7 @@ const Card = ({item,propsCopy}) => {
                           color: "grey",
                         }}
                       >
-                       Sandwiches,FriendChicken
+                       {item.Type+','}
                       </Text>
                     </View>
                   </View>

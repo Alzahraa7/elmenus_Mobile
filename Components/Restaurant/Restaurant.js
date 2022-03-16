@@ -14,7 +14,7 @@ import Card from "./Card";
 import { useState } from "react";
 const Restaurant = (props) => {
   const [propsCopy,setProps]=useState(props)
-  console.log(props)
+  
    const [Res,setRes] =useState([])
   async function getResturants() {
     const Res = collection(db, 'Restaurant');
@@ -43,9 +43,9 @@ const Restaurant = (props) => {
           <Input size="md" placeholder="     Find a Resturant or Dish" type="Search" variant="filled" style={{"paddingLeft":24,"position":"relative"}} />
           <Ionicons name="search" size={20}  color={"grey"} style={{"position":"absolute","top":9}} />
           </Stack>
-            {/* <FlatList
+            <FlatList
                data={Res}
-               renderItem={({ item }) => <Card item={item} />}
+               renderItem={({ item }) => <Card item={item} propsCopy={propsCopy} />}
                ItemSeparatorComponent={() => (
           <Box
             style={{
@@ -55,8 +55,8 @@ const Restaurant = (props) => {
           ></Box>
         )}
         
-      /> */}
-      <Card propsCopy={propsCopy}/>
+      />
+      {/* <Card propsCopy={propsCopy}/> */}
 
         </View>
 
