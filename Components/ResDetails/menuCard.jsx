@@ -50,6 +50,9 @@ const Menu = [
 ]
 
 const MenuCard = ({props,Menu}) => {
+
+    console.log(Menu)
+
     return (
         <>
             <View>
@@ -84,8 +87,8 @@ const MenuCard = ({props,Menu}) => {
                                         <Button style={style.plusBtn} variant="ghost" colorScheme="success"  onPress={() => props.navigation.navigate({name:'MealDetails'})} >+</Button>
                                         <Text style={{ fontWeight: "bold" }}>{ item.Name }</Text>
                                     </HStack>
-                                    <Text style={{ marginBottom: "10px", color: "#8A8E8E" }}> {item.Description} </Text>
-                                    <Text> {item.Price} EGP </Text>
+                                    <Text style={{ marginBottom: "10px", color: "#8A8E8E", fontSize: "2vh", width: "200px" }}> {item.Description} </Text>
+                                    <Text> {item.Size[0].Price} EGP </Text>
                                 </View>
                                 <Image source={{
                                     uri: `${item.Image}`

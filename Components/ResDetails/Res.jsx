@@ -21,7 +21,7 @@ export const ResDetails = (props) => {
     const [Res,setRes] =useState([])
     const [Menu,setMenu] =useState([])
     const Rest = doc(db, 'Restaurants',ResID);
-    // const Menus = collection(db, 'Restaurants',ResID)
+    const Menus = collection(db, 'Restaurants',ResID, "Menus")
     useEffect(()=>{
         async function getResturants() {
             const ResSnapshot = await getDoc(Rest);
@@ -29,25 +29,25 @@ export const ResDetails = (props) => {
             setRes(ResList)
             return ResList
       }
-    //   async function getMenu() {
-    //     const ResSnapshot = await getDocs(Menus);
-    //     const MenuList = ResSnapshot.docs.map((doc) => {
-    //       return { ...doc.data(), id: doc.id };
-    //     });
-    //     setMenu(MenuList);
-    //     return MenuList;
-    //   }
+      async function getMenu() {
+        const ResSnapshot = await getDocs(Menus);
+        const MenuList = ResSnapshot.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        });
+        setMenu(MenuList);
+        return MenuList;
+      }
 
 
 
       getResturants()
-    //   getMenu()
+      getMenu()
 
     },[])
    
     const FirstRoute = () => (
         <>
-            <MenuCard props={props}/>
+            <MenuCard props={props} Menu={Menu}/>
         </>
     );
 
