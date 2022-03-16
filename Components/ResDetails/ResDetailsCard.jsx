@@ -6,7 +6,7 @@ import { CircleIcon } from "native-base";
 import * as React from "react";
 
 const ResDetailsCard = ({ Res }) => {
-  if (Res.id)
+  // if (Res.id)
     return (
       <>
         <View>
@@ -21,7 +21,7 @@ const ResDetailsCard = ({ Res }) => {
 
           <Image
             source={{
-              uri: Res.ImageLogo,
+              uri: Res.Logo,
             }}
             alt="Alternate Text"
             size="70px"
@@ -154,17 +154,17 @@ const ResDetailsCard = ({ Res }) => {
         </View>
       </>
     );
-  return (
-    <HStack
-      space={2}
-      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-    >
-      <Spinner accessibilityLabel="Loading posts" />
-      <Heading color="primary.500" fontSize="md">
-        Loading......
-      </Heading>
-    </HStack>
-  );
+  // return (
+  //   <HStack
+  //     space={2}
+  //     style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+  //   >
+  //     <Spinner accessibilityLabel="Loading posts" />
+  //     <Heading color="primary.500" fontSize="md">
+  //       Loading......
+  //     </Heading>
+  //   </HStack>
+  // );
 };
 
 export default ResDetailsCard;

@@ -15,11 +15,13 @@ import { collection,getDocs,getDoc,doc } from "firebase/firestore/lite";
 import { db } from "../../Firebase/firebase";
 
 export const ResDetails = (props) => {
+    // console.log(props.route.params.ResID)
+
     const  ResID = props.route.params.ResID;
     const [Res,setRes] =useState([])
     const [Menu,setMenu] =useState([])
-    const Rest = doc(db, 'Restaurant',ResID);
-    const Menus = collection(db, 'Restaurant',ResID)
+    const Rest = doc(db, 'Restaurants',ResID);
+    // const Menus = collection(db, 'Restaurants',ResID)
     useEffect(()=>{
         async function getResturants() {
             const ResSnapshot = await getDoc(Rest);
@@ -27,25 +29,25 @@ export const ResDetails = (props) => {
             setRes(ResList)
             return ResList
       }
-      async function getMenu() {
-        const ResSnapshot = await getDocs(Menus);
-        const MenuList = ResSnapshot.docs.map((doc) => {
-          return { ...doc.data(), id: doc.id };
-        });
-        setMenu(MenuList);
-        return MenuList;
-      }
+    //   async function getMenu() {
+    //     const ResSnapshot = await getDocs(Menus);
+    //     const MenuList = ResSnapshot.docs.map((doc) => {
+    //       return { ...doc.data(), id: doc.id };
+    //     });
+    //     setMenu(MenuList);
+    //     return MenuList;
+    //   }
 
 
 
       getResturants()
-      getMenu()
+    //   getMenu()
 
     },[])
    
     const FirstRoute = () => (
         <>
-            <MenuCard props={props} Menu={Menu}/>
+            <MenuCard props={props}/>
         </>
     );
 

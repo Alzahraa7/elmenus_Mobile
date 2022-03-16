@@ -44,7 +44,7 @@ const Card = ({item,propsCopy}) => {
                 <AspectRatio w="100%" ratio={16 / 9}>
                   <Image
                     source={{
-                      uri: item.ImageURL
+                      uri: item.Image
                     }}
                     alt="image"
                   />
@@ -76,7 +76,7 @@ const Card = ({item,propsCopy}) => {
                       resizeMode={"contain"}
                       borderRadius={100}
                       source={{
-                        uri: item.ImageLogo,
+                        uri: item.Logo,
                       }}
                       alt="Logo"
                     />

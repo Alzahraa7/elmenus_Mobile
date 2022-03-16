@@ -16,7 +16,7 @@ const Restaurant = (props) => {
   useEffect(() => {
     let isMounted = true; // note mutable flag
     async function getResturants() {
-      const Rest = collection(db, "Restaurant");
+      const Rest = collection(db, "Restaurants");
       const ResSnapshot = await getDocs(Rest);
       const ResList = ResSnapshot.docs.map((doc) => {
         return { ...doc.data(), id: doc.id };
@@ -35,7 +35,7 @@ const Restaurant = (props) => {
   const updateSearch = () => {
     console.log("Hi");
   };
-  if (Res.id)
+  // if (Res.id)
     return (
       <>
         <NativeBaseProvider>
@@ -65,14 +65,14 @@ const Restaurant = (props) => {
         </NativeBaseProvider>
       </>
     );
-  return (
-    <HStack space={2}  style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Spinner accessibilityLabel="Loading posts" />
-      <Heading color="primary.500" fontSize="md">
-        Loading......
-      </Heading>
-    </HStack>
-  );
+  // return (
+  //   <HStack space={2}  style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+  //     <Spinner accessibilityLabel="Loading posts" />
+  //     <Heading color="primary.500" fontSize="md">
+  //       Loading......
+  //     </Heading>
+  //   </HStack>
+  // );
 };
 
 export default Restaurant;
