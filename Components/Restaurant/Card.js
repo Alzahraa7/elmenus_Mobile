@@ -1,7 +1,7 @@
-import { Text, View, StyleSheet,FlatList } from "react-native";
+import { Text, View, StyleSheet, FlatList } from "react-native";
 import Star from "react-native-star-view/lib/Star";
 import { Ionicons } from "@expo/vector-icons";
-import { CircleIcon,ChevronRightIcon } from "native-base";
+import { CircleIcon, ChevronRightIcon } from "native-base";
 import {
   Button,
   Box,
@@ -20,7 +20,7 @@ const Card = ({item,propsCopy}) => {
     <>
       <NativeBaseProvider>
         <View
-          style={{ flex: 1,marginTop:4 }}
+          style={{ flex: 1, marginTop: 4 }}
         >
           <Box alignItems="center" style={styles.card}>
             <Box
@@ -50,8 +50,8 @@ const Card = ({item,propsCopy}) => {
                     alt="image"
                   />
                 </AspectRatio>
-                <Box 
-                  
+                <Box
+
                   position="absolute"
                   bottom="4"
                   left="2"
@@ -123,9 +123,9 @@ const Card = ({item,propsCopy}) => {
                   </View>
                   <View>
                     <Text fontSize={10} style={{ color: "#3bc93a" }}>
-                      
-                      <CircleIcon size={4} color="#3bc93a"  style={{paddingRight:6}} />
-                       ORDER ONLINE
+
+                      <CircleIcon size={4} color="#3bc93a" style={{ paddingRight: 6 }} />
+                      ORDER ONLINE
                     </Text>
                   </View>
                 </Stack>
@@ -134,7 +134,7 @@ const Card = ({item,propsCopy}) => {
           </Box>
         </View>
 
-        
+
       </NativeBaseProvider>
     </>
   );
@@ -144,16 +144,16 @@ export default Card;
 
 const styles = StyleSheet.create({
   card: {
-   
+
   },
   opacity: {
-    width:180,
+    width: 180,
     backgroundColor: "rgba(234, 234, 234, 0.7)",
     borderTopRightRadius: 30,
     borderBottomRightRadius: 30,
-    flex: 1, 
+    flex: 1,
     flexDirection: "row",
-    justifyContent:"space-between"
+    justifyContent: "space-between"
   },
   starStyle: {
     width: 80,
