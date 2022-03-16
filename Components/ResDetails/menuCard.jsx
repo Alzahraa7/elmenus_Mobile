@@ -22,34 +22,34 @@ const Menu = [
     {
         Name: "Chicken Ranch",
         Image: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/258068e6-0723-454a-bc77-d221f80c1fe1.jpg",
-        Description: "tomato, fresh mushroom with ranch souce",
+        Description: "tomato, fresh mushroom with ranch ",
         Price: "79.00 - 190.00"
 
     },
     {
         Name: "Chicken Ranch",
         Image: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/258068e6-0723-454a-bc77-d221f80c1fe1.jpg",
-        Description: "tomato, fresh mushroom with ranch souce",
+        Description: "tomato, fresh mushroom with ranch ",
         Price: "79.00 - 190.00"
 
     },
     {
         Name: "Chicken Ranch",
         Image: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/258068e6-0723-454a-bc77-d221f80c1fe1.jpg",
-        Description: "tomato, fresh mushroom with ranch souce",
+        Description: "tomato, fresh mushroom with ranch ",
         Price: "79.00 - 190.00"
 
     },
     {
         Name: "Chicken Ranch",
         Image: "https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Thumbnail/258068e6-0723-454a-bc77-d221f80c1fe1.jpg",
-        Description: "tomato, fresh mushroom with ranch souce",
+        Description: "tomato, fresh mushroom with ranch ",
         Price: "79.00 - 190.00"
 
     }
 ]
 
-const MenuCard = () => {
+const MenuCard = ({props}) => {
     return (
         <>
             <View>
@@ -81,7 +81,7 @@ const MenuCard = () => {
                             <HStack>
                                 <View style={style.cardStyle}>
                                     <HStack style={{ color: "black" }}>
-                                        <Button style={style.plusBtn} variant="ghost" colorScheme="success">+</Button>
+                                        <Button style={style.plusBtn} variant="ghost" colorScheme="success"  onPress={() => props.navigation.navigate({name:'MealDetails'})} >+</Button>
                                         <Text style={{ fontWeight: "bold" }}>{ item.Name }</Text>
                                     </HStack>
                                     <Text style={{ marginBottom: "10px", color: "#8A8E8E" }}> {item.Description} </Text>

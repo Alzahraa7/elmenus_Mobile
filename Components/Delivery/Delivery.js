@@ -1,10 +1,11 @@
-import { Text, View } from 'react-native';
-const Delivery = () =>{
-    return(
+import { Text, View, Hidden, Center, Button, Image , useColorMode } from 'native-base';
+const Delivery = () => {
+    return (
         <>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Delivery!</Text>
-    </View>
+
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text>Delivery!</Text>
+            </View>
         </>
     );
 }

@@ -13,37 +13,30 @@ import ReviewCard from "./ReviewCard";
 
 
 
-const FirstRoute = () => (
-    // <View style={{ flex: 1 }} />
-    <>
-        <MenuCard/>
-    </>
-);
+export const ResDetails = (props) => {
 
-const SecondRoute = () => (
-    // <View style={{ flex: 1}} />
-    // <Text>Info</Text>
-    <InfoCard/>
-);
 
-// const ThreeRoute = () => (
-//     // <View style={{ flex: 1}} />
-//     <Text>Photos</Text>
-// );
-const FourRoute = () => (
-    // <View style={{ flex: 1}} />
-    // <Text>Reviews</Text>
-    <ReviewCard/>
-);
+    const FirstRoute = () => (
+        <>
+            <MenuCard props={props} />
+        </>
+    );
 
-const renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
-    // Three: ThreeRoute,
-    four: FourRoute
-});
+    const SecondRoute = () => (
 
-export const ResDetails = () => {
+        <InfoCard />
+    );
+
+    const FourRoute = () => (
+
+        <ReviewCard />
+    );
+
+    const renderScene = SceneMap({
+        first: FirstRoute,
+        second: SecondRoute,
+        four: FourRoute
+    });
 
     const layout = useWindowDimensions();
 
@@ -85,7 +78,13 @@ export const ResDetails = () => {
                         />
                     </View>
 
-
+                    <View style={{  position:'sticky',bottom:0 }}>
+                        {
+                            localStorage.getItem("Added") && <Button colorScheme="red" width="100%" rightIcon={<Ionicons name="basket" size="lg" color="white" />}
+                            onPress={() => props.navigation.navigate({name:'MyBasket'})}
+                            > Go To Basket </Button>
+                        }
+                    </View>
 
                 </View>
             </ScrollView>

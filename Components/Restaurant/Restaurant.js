@@ -60,6 +60,7 @@ const Restaurant = (props) => {
 
         </View>
 
+
       </NativeBaseProvider>
     </>
   );
