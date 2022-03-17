@@ -1,9 +1,30 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View,Image } from 'react-native'
-
+import {auth} from '../../Firebase/firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth';
 const logIn = () =>{
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+    .then((res)=>{
+      localStorage.setItem('email', email);
+      localStorage.setItem('userID', res.user.uid);
+      setEmail('');
+      setPassword('');
+      // console.log(res);
+      // console.log(res.user.uid);
+    })
+    .catch((res)=>{
+      console.log(res);
+
+    })
+  }
+
     return(
+      
         <KeyboardAvoidingView
         style={styles.container}
         behavior="padding"
@@ -15,21 +36,22 @@ const logIn = () =>{
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Email"
-            // value={}
-            // onChangeText={}
+            value={email}
+          onChangeText={text => setEmail(text)}
             style={styles.input}
           />
           <TextInput
             placeholder="Password"
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={password}
+            onChangeText={text => setPassword(text)}
             style={styles.input}
+            secureTextEntry
           />
         </View>
   
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            // onPress={}
+            onPress={handleLogin}
             style={styles.button}
           >
             <Text style={styles.buttonText}>Login</Text>
@@ -91,5 +113,7 @@ const styles = StyleSheet.create({
     logo:{
       width: '200px',
       height: '50px',
+      marginBottom: '30px',
+      borderRadius: '10px'
   },
   })

@@ -1,8 +1,28 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View,Image } from 'react-native'
-
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+import { auth } from '../../Firebase/firebase'
 const signUp = () =>{
+
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSignUp = () => {
+    createUserWithEmailAndPassword(auth, email, password, name)
+    .then((res)=>{
+        // console.log(res);
+        localStorage.setItem('email', email);
+        localStorage.setItem('userID', res.user.uid);
+        setName('');
+        setEmail('');
+        setPassword('');
+    })
+    .catch((res)=>{
+        console.log(res);
+    })
+  }
     return(
         
         <KeyboardAvoidingView
@@ -17,27 +37,28 @@ const signUp = () =>{
         
         <TextInput
             placeholder="Name"
-            // value={}
-            // onChangeText={}
+            value={name}
+            onChangeText={text => setName(text)}
             style={styles.input}
           />
           <TextInput
             placeholder="Email"
-            // value={}
-            // onChangeText={}
+            value={email}
+            onChangeText={text => setEmail(text)}
             style={styles.input}
           />
           <TextInput
             placeholder="Password"
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={password}
+            onChangeText={text => setPassword(text)}
             style={styles.input}
+            secureTextEntry
           />
         </View>
   
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            // onPress={}
+            onPress={handleSignUp}
             style={styles.button}
           >
             <Text style={styles.buttonText}>SignUp</Text>
@@ -68,7 +89,7 @@ const styles = StyleSheet.create({
       marginTop: 5,
     },
     buttonContainer: {
-      width: '60%',
+      width: '80%',
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 40,
@@ -99,5 +120,7 @@ const styles = StyleSheet.create({
     logo:{
         width: '200px',
         height: '50px',
+        marginBottom: '30px',
+        borderRadius: '10px'
     },
   })

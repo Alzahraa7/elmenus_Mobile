@@ -45,11 +45,10 @@ export default function App() {
           else if (route.name === 'Me') {
             iconName = focused ? 'person' : 'person-outline';
           } else if (route.name === 'logIn') {
-            iconName = focused ? 'login' : 'log-outline';
+            iconName = focused ? 'person' : 'person-outline';
           } else if (route.name === 'signUp') {
-            iconName = focused ? 'signup' : 'sign-outline';
+            iconName = focused ? 'add' : 'add-outline';
           }
-
           // You can return any component that you like here!
           return  <Ionicons name={iconName} size={size} color={color} />;
         },
