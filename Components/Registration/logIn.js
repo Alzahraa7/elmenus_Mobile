@@ -16,6 +16,9 @@ const logIn = () =>{
       setPassword('');
       // console.log(res);
       // console.log(res.user.uid);
+      setTimeout(()=>{
+        window.location.reload()
+    },500)
     })
     .catch((res)=>{
       console.log(res);

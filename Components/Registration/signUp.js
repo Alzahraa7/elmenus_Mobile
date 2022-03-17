@@ -18,6 +18,10 @@ const signUp = () =>{
         setName('');
         setEmail('');
         setPassword('');
+
+        setTimeout(()=>{
+            window.location.reload()
+        },500)
     })
     .catch((res)=>{
         console.log(res);
