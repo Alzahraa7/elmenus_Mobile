@@ -2,7 +2,8 @@ import {FlatList, Box, Button, Slider, Image,Text, Input } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { Icon } from 'react-native-eva-icons';
 
-const IconsList = () =>{
+const IconsList = ({copyProps}) =>{
+    console.log(copyProps)
     const iconsObj =[
         {
         Name:'Live Tracking',
@@ -30,7 +31,7 @@ const IconsList = () =>{
         renderItem={({item})=>
             <Box width='140' borderRadius='20px'  shadow='6' margin='7px' padding='10px' textAlign='center'>
                 <Icon  style={{margin:'auto'}}  name={item.Icon} width={25} height={25} fill='#e32207'  />
-                <Text textAlign='center'>
+                <Text textAlign='center' onPress={() => copyProps.navigation.navigate({name:'Offers'})}>
                     {item.Name}
                 </Text>
             </Box>
