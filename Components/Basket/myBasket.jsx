@@ -137,7 +137,7 @@ const MyBasket = (props) => {
                     </Box>
 
                     <View style={{ position: 'sticky', bottom: 0 }}>
-                        <Button colorScheme="red" width="100%"> Checkout Now</Button>
+                        <Button colorScheme="red" width="100%" onPress={()=>props.navigation.navigate('CheckOut')}> Checkout Now</Button>
                     </View>
 
 
