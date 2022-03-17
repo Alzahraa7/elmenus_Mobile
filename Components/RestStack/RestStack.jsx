@@ -6,6 +6,7 @@ import Restaurant from '../Restaurant/Restaurant';
 import {CheckOut} from '../CheckOut/checkout'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MyBasket from '../Basket/myBasket';
+import UpdateMeal from '../Basket/updateMeal';
 export const ResStackScreen=()=> {
     const ResStack = createNativeStackNavigator();
     
@@ -16,6 +17,7 @@ export const ResStackScreen=()=> {
       <ResStack.Screen name="MealDetails" component={MealDetails}/>
       <ResStack.Screen name="CheckOut" component={CheckOut}/>
       <ResStack.Screen name="MyBasket" component={MyBasket}/>
+      <ResStack.Screen name="UpdateMeal" component={UpdateMeal}/>
     </ResStack.Navigator>
   );
 }
