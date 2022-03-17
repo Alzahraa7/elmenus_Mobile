@@ -10,7 +10,9 @@ import Restaurant from './Components/Restaurant/Restaurant';
 import Me from './Components/Me/Me';
 import { db } from './Firebase/firebase';
 import { collection,getDocs } from 'firebase/firestore/lite';
+import Offers from './Components/Offers/Offers';
 const Tab = createBottomTabNavigator();
+
 
 export default function App() {
   // for test firebase
@@ -52,6 +54,7 @@ export default function App() {
         <Tab.Screen name="Restaurant" component={Restaurant} />
         <Tab.Screen name="DineOut" component={DineOut} />
         <Tab.Screen name="Me" component={Me} />
+        <Tab.Screen name="Offers" component={Offers} />
       </Tab.Navigator>
     </NavigationContainer>
     </NativeBaseProvider>
