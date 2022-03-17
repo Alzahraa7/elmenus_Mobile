@@ -6,6 +6,7 @@ import { CircleIcon } from "native-base";
 import * as React from "react";
 
 const ResDetailsCard = ({ Res }) => {
+  localStorage.setItem("ResName", Res.ResName)
   // if (Res.id)
     return (
       <>

@@ -15,9 +15,10 @@ import { collection,getDocs,getDoc,doc } from "firebase/firestore/lite";
 import { db } from "../../Firebase/firebase";
 
 export const ResDetails = (props) => {
-    // console.log(props.route.params.ResID)
 
     const  ResID = props.route.params.ResID;
+    localStorage.setItem("ResID", ResID)
+
     const [Res,setRes] =useState([])
     const [Menu,setMenu] =useState([])
     const Rest = doc(db, 'Restaurants',ResID);
@@ -110,7 +111,7 @@ export const ResDetails = (props) => {
                     <View style={{  position:'sticky',bottom:0 }}>
                         {
                             localStorage.getItem("Added") && <Button colorScheme="red" width="100%" rightIcon={<Ionicons name="basket" size="lg" color="white" />}
-                            onPress={() => props.navigation.navigate({name:'MyBasket'})}
+                            onPress={() => props.navigation.navigate('MyBasket',{prop:props})}
                             > Go To Basket </Button>
                         }
                     </View>

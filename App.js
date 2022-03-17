@@ -14,7 +14,10 @@ import { db } from './Firebase/firebase';
 import { collection,getDocs } from 'firebase/firestore/lite';
 import { Res } from './Components/ResDetails/Res';
 import { ResStackScreen } from './Components/RestStack/RestStack'
+import Offers from './Components/Offers/Offers';
+import { DeliveryStackScreen } from './Components/DeliveryStack/DeliveryStack';
 const Tab = createBottomTabNavigator();
+
 
 export default function App() {
   // for test firebase
@@ -55,12 +58,13 @@ export default function App() {
         tabBarActiveTintColor: '#e32207',
         tabBarInactiveTintColor: 'gray',
       })}>
-        <Tab.Screen name="Delivery" component={Delivery} />
+        <Tab.Screen name="Delivery" component={DeliveryStackScreen} options={{header: () => null}} />
         <Tab.Screen name="Restaurant" component={ResStackScreen} options={{header: () => null}}  />
         <Tab.Screen name="DineOut" component={DineOut} />
         <Tab.Screen name="Me" component={Me} />
         <Tab.Screen  name="logIn" component={logIn} />
         <Tab.Screen  name="signUp" component={signUp} />
+        
       </Tab.Navigator>
     </NavigationContainer>
     </NativeBaseProvider>
